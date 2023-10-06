@@ -30,7 +30,8 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@pinia/nuxt',
     '@element-plus/nuxt',
-    '@nuxtjs/color-mode'
+    '@nuxtjs/color-mode',
+    '@vueuse/nuxt',
   ],
 
   // vueuse
