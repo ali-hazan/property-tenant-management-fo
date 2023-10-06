@@ -1,0 +1,45 @@
+{
+  "name": "ptms",
+  "packageManager": "pnpm@8.8.0",
+  "version": "0.0.0",
+  "description": "Property and tenant management",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ali-hazan/property-tenant-management-fo"
+  },
+  "author": "Ali Hassan",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "preview": "nuxi preview",
+    "start": "node .output/server/index.mjs",
+    "generate": "nuxi generate",
+    "postinstall": "nuxi prepare"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
+    "element-plus": "^2.3.14"
+  },
+  "devDependencies": {
+    "@element-plus/nuxt": "^1.0.6",
+    "@nuxtjs/color-mode": "^3.3.0",
+    "@pinia/nuxt": "^0.4.11",
+    "@unocss/nuxt": "^0.53.6",
+    "@vueuse/nuxt": "^10.4.1",
+    "consola": "^3.2.3",
+    "nuxt": "^3.7.4",
+    "sass": "^1.68.0",
+    "typescript": "^5.2.2"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "webpack",
+        "vite",
+        "vue"
+      ]
+    }
+  }
+}
