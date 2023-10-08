@@ -5,10 +5,7 @@
       /></el-aside>
       <el-container>
         <el-header>
-          <el-button @click="isExpandMenu = !isExpandMenu">
-            <el-icon v-if="isExpandMenu"><expand /></el-icon>
-            <el-icon v-else><fold /></el-icon
-          ></el-button>
+         <Header v-model="isExpandMenu"/>
         </el-header>
         <el-main><slot /></el-main>
       </el-container>
@@ -16,8 +13,6 @@
 </template>
 
 <script lang="ts" setup>
-import { Expand, Fold } from "@element-plus/icons-vue";
-
 const isExpandMenu = ref(false);
 </script>
 
@@ -27,5 +22,9 @@ const isExpandMenu = ref(false);
 }
 .el-aside{
   border-right: solid 1px var(--el-menu-border-color);
+}
+.el-header{
+  display:flex;
+  align-items:center;
 }
 </style>

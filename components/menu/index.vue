@@ -1,10 +1,15 @@
 <template>
-  <el-menu default-active="2" class="el-menu-vertical" :collapse="isExpandMenu" :collapse-transition="false">
+  <el-menu
+    default-active="2"
+    class="el-menu-vertical"
+    :collapse="isExpandMenu"
+    :collapse-transition="false"
+  >
     <el-sub-menu index="1">
       <template #title>
         <el-icon><location /></el-icon>
         <span>Navigator One</span>
-      </template>ß
+      </template>
       <el-menu-item-group>
         <template #title><span>Group One</span></template>
         <el-menu-item index="1-1">item one</el-menu-item>
@@ -42,10 +47,8 @@ const props = defineProps<{
 }>();
 </script>
 
-<style lang=scss>
+<style lang="scss">
 .el-menu-vertical:not(.el-menu--collapse) {
   width: 200px;
-
 }
-
 </style>
