@@ -16,7 +16,9 @@
     "preview": "nuxi preview",
     "start": "node .output/server/index.mjs",
     "generate": "nuxi generate",
-    "postinstall": "nuxi prepare"
+    "postinstall": "nuxi prepare",
+    "clean": "rm -rf .nuxt/* node_modules/* .output/*",
+    "gen-gql": "graphql-codegen"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
@@ -24,6 +26,9 @@
   },
   "devDependencies": {
     "@element-plus/nuxt": "^1.0.6",
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/client-preset": "^4.1.0",
+    "@nuxtjs/apollo": "^5.0.0-alpha.7",
     "@nuxtjs/color-mode": "^3.3.0",
     "@pinia/nuxt": "^0.4.11",
     "@unocss/nuxt": "^0.53.6",

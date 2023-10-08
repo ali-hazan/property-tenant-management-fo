@@ -5,4 +5,3 @@
     <NuxtPage />
   </NuxtLayout>
 </template>
-ß

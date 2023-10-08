@@ -3,21 +3,21 @@ export default defineNuxtConfig({
   app: {
     // head
     head: {
-      title: 'Proprty tenant management',
+      title: "Proprty tenant management",
       meta: [
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
         {
-          hid: 'description',
-          name: 'description',
-          content: 'Property & tentant management application',
+          hid: "description",
+          name: "description",
+          content: "Property & tentant management application",
         },
       ],
-      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    }
+      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    },
   },
 
   // css
-  css: ['~/assets/scss/index.scss'],
+  css: ["~/assets/scss/index.scss"],
 
   typescript: {
     strict: true,
@@ -26,12 +26,13 @@ export default defineNuxtConfig({
 
   // build modules
   modules: [
-    '@vueuse/nuxt',
-    '@unocss/nuxt',
-    '@pinia/nuxt',
-    '@element-plus/nuxt',
-    '@nuxtjs/color-mode',
-    '@vueuse/nuxt',
+    "@vueuse/nuxt",
+    "@unocss/nuxt",
+    "@pinia/nuxt",
+    "@element-plus/nuxt",
+    "@nuxtjs/color-mode",
+    "@vueuse/nuxt",
+    "@nuxtjs/apollo",
   ],
 
   // vueuse
@@ -41,7 +42,7 @@ export default defineNuxtConfig({
 
   // colorMode
   colorMode: {
-    classSuffix: '',
+    classSuffix: "",
   },
 
   unocss: {
@@ -61,8 +62,15 @@ export default defineNuxtConfig({
     },
   },
   elementPlus: {
-    icon: 'ElIcon',
-    importStyle: 'scss',
-    themes: ['dark'],
+    icon: "ElIcon",
+    importStyle: "scss",
+    themes: ["dark"],
   },
-})
+  apollo: {
+    clients: {
+      default: {
+        httpEndpoint: "http://localhost:1337/graphql",
+      },
+    },
+  },
+});
