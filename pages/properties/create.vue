@@ -5,7 +5,7 @@
 <script lang="ts" setup>
 import { reactive } from "vue";
 import { createProperty } from "~/graphql/mutations/property";
-import { PropertyInput } from "../../../graphql/generated/graphql";
+import { PropertyInput } from "~/graphql/generated/graphql";
 
 // do not use same name with ref
 const form: PropertyInput = reactive({
