@@ -33,6 +33,7 @@ export default defineNuxtConfig({
     "@nuxtjs/color-mode",
     "@vueuse/nuxt",
     "@nuxtjs/apollo",
+    "nuxt-lodash",
   ],
 
   // vueuse
