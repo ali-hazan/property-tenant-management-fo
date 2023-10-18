@@ -3,12 +3,12 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from "vue";
-import { createProperty } from "~/graphql/mutations/property";
+import { updateProperty } from "~/graphql/mutations/property";
 import { PropertyInput } from "../../../graphql/generated/graphql";
+import { getPropertyByPropertyId } from "~/graphql/queries/property";
 
 // do not use same name with ref
-const form: PropertyInput = reactive({
+const form: Ref<PropertyInput> = ref({
   propertyId: "",
   address: "",
   status: undefined,
@@ -16,24 +16,55 @@ const form: PropertyInput = reactive({
   numberOfTenant: 1,
   description: "",
 });
+const propertyId = ref();
+
+const route = useRoute();
+
+const initiateData =async () => {
+  if (route.params && route.params.id) {
+    const { data: properties } = await useAsyncQuery(getPropertyByPropertyId, {
+      id: route.params.id.toString(),
+    });
+    if (
+      (route.params.id,
+      properties.value?.properties?.data && route.params.id,
+      properties.value?.properties?.data.length)
+    ) {
+      const property = properties.value?.properties?.data[0].attributes;
+      propertyId.value = properties.value.properties.data[0]?.id;
+
+      form.value = {
+        propertyId: property?.propertyId,
+        address: property?.address,
+        status: property?.status,
+        type: property?.type,
+        numberOfTenant: property?.numberOfTenant,
+        description: property?.description,
+      };
+    }
+  }
+};
+
+initiateData();
 
 const onSubmitForm = async () => {
-  const { mutate, error } = useMutation(createProperty, {
+  const { mutate, error } = useMutation(updateProperty, {
     variables: {
+      id: propertyId.value,
       input: {
-        propertyId: form.propertyId,
-        address: form.address,
-        status: form.status,
-        type: form.type,
-        numberOfTenant: form.numberOfTenant,
-        description: form.description,
+        propertyId: form.value.propertyId,
+        address: form.value.address,
+        status: form.value.status,
+        type: form.value.type,
+        numberOfTenant: form.value.numberOfTenant,
+        description: form.value.description,
       },
     },
   });
   try {
     await mutate();
     ElMessage({
-      message: "Property added successfully!",
+      message: "Property updated successfully!",
       type: "success",
     });
   } catch {

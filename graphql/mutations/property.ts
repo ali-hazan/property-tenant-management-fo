@@ -9,3 +9,13 @@ export const createProperty = graphql(`
     }
   }
 `);
+
+export const updateProperty = graphql(`
+  mutation updateProperty($id: ID!, $input: PropertyInput!) {
+    updateProperty(id: $id, data: $input) {
+      data {
+        id
+      }
+    }
+  }
+`);
