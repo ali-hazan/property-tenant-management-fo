@@ -15,24 +15,23 @@ const form: PropertyInput = reactive({
   type: undefined,
   numberOfTenant: 1,
   description: "",
+  images: undefined,
 });
 
 const onSubmitForm = async () => {
-  const { mutate, error } = useMutation(
-    createProperty,
-    {
-      variables: {
-        input: {
-          propertyId: form.propertyId,
-          address: form.address,
-          status: form.status,
-          type: form.type,
-          numberOfTenant: form.numberOfTenant,
-          description: form.description,
-        },
+  const { mutate, error } = useMutation(createProperty, {
+    variables: {
+      input: {
+        propertyId: form.propertyId,
+        address: form.address,
+        status: form.status,
+        type: form.type,
+        numberOfTenant: form.numberOfTenant,
+        description: form.description,
+        images: form.images?.map((item: any) => item.response[0].id),
       },
     },
-  );
+  });
   try {
     await mutate();
     ElMessage({

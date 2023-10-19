@@ -69,6 +69,30 @@
       >
         <el-input-number v-model="form.numberOfTenant" :min="1" :max="50" />
       </el-form-item>
+      <el-form-item
+        label="Property image"
+        prop="images"
+        :rules="[{ required: true, message: 'Property image is required' }]"
+      >
+        <el-upload
+          v-model:file-list="form.images"
+          drag
+          name="files"
+          action="http://localhost:1337/api/upload"
+          :limit="3"
+          multiple
+        >
+          <el-icon class="el-icon--upload"><upload-filled /></el-icon>
+          <div class="el-upload__text">
+            Drop file here or <em>click to upload</em>
+          </div>
+          <template #tip>
+            <div class="el-upload__tip">
+              jpg/png files with a size less than 500kb
+            </div>
+          </template>
+        </el-upload>
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm(formRef)">{{
           isUpdateForm ? "Update" : "Create"
@@ -83,7 +107,7 @@
 import type { FormInstance } from "element-plus";
 import { useVModel } from "@vueuse/core";
 import { PropertyInput } from "../../graphql/generated/graphql";
-
+import { UploadFilled } from "@element-plus/icons-vue";
 import {
   Enum_Property_Status,
   Enum_Property_Type,
