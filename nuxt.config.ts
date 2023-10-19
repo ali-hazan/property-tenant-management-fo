@@ -69,6 +69,7 @@ export default defineNuxtConfig({
   },
   apollo: {
     clients: {
+      fetchPolicy: "no-cache",
       default: {
         httpEndpoint: "http://localhost:1337/graphql",
       },

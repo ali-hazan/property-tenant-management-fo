@@ -20,32 +20,29 @@ const propertyId = ref();
 
 const route = useRoute();
 
-const initiateData =async () => {
-  if (route.params && route.params.id) {
-    const { data: properties } = await useAsyncQuery(getPropertyByPropertyId, {
-      id: route.params.id.toString(),
-    });
-    if (
-      (route.params.id,
-      properties.value?.properties?.data && route.params.id,
-      properties.value?.properties?.data.length)
-    ) {
-      const property = properties.value?.properties?.data[0].attributes;
-      propertyId.value = properties.value.properties.data[0]?.id;
-
-      form.value = {
-        propertyId: property?.propertyId,
-        address: property?.address,
-        status: property?.status,
-        type: property?.type,
-        numberOfTenant: property?.numberOfTenant,
-        description: property?.description,
-      };
-    }
+const { result: properties, refetch } = await useQuery(
+  getPropertyByPropertyId,
+  {
+    id: route.params.id.toString(),
   }
-};
+);
+if (
+  (route.params.id,
+  properties.value?.properties?.data && route.params.id,
+  properties.value?.properties?.data.length)
+) {
+  const property = properties.value?.properties?.data[0].attributes;
+  propertyId.value = properties.value.properties.data[0]?.id;
 
-initiateData();
+  form.value = {
+    propertyId: property?.propertyId,
+    address: property?.address,
+    status: property?.status,
+    type: property?.type,
+    numberOfTenant: property?.numberOfTenant,
+    description: property?.description,
+  };
+}
 
 const onSubmitForm = async () => {
   const { mutate, error } = useMutation(updateProperty, {
@@ -67,6 +64,7 @@ const onSubmitForm = async () => {
       message: "Property updated successfully!",
       type: "success",
     });
+    refetch();
   } catch {
     if (error.value) {
       ElMessage({

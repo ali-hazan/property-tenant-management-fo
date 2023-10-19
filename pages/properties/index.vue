@@ -36,7 +36,6 @@ definePageMeta({
   layout: false,
 });
 
-
 const { result: properties } = useQuery(getProperties, null, {
   fetchPolicy: "network-only",
 });
