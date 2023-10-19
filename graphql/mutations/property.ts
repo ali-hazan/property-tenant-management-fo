@@ -19,3 +19,13 @@ export const updateProperty = graphql(`
     }
   }
 `);
+
+export const deleteProperty = graphql(`
+  mutation deleteProperty($id: ID!) {
+    deleteProperty(id: $id) {
+      data {
+        id
+      }
+    }
+  }
+`);

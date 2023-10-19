@@ -1,5 +1,6 @@
 <template>
   <el-container>
+    <NuxtLoadingIndicator />
     <el-aside :width="`${isExpandMenu ? 64 : 200}px`" height="100vh">
       <Menu :isExpandMenu="isExpandMenu" />
     </el-aside>

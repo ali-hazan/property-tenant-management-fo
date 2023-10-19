@@ -1,5 +1,5 @@
 <template>
-  <el-page-header @back="onBack">
+  <el-page-header @back="onBack" class="mb-8">
     <template #breadcrumb>
       <el-breadcrumb separator="/">
         <el-breadcrumb-item

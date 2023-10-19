@@ -20,7 +20,7 @@ const propertyId = ref();
 
 const route = useRoute();
 
-const { result: properties, refetch } = await useQuery(
+const { data: properties, refresh } = await useAsyncQuery(
   getPropertyByPropertyId,
   {
     id: route.params.id.toString(),
@@ -64,7 +64,7 @@ const onSubmitForm = async () => {
       message: "Property updated successfully!",
       type: "success",
     });
-    refetch();
+    refresh();
   } catch {
     if (error.value) {
       ElMessage({

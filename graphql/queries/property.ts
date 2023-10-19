@@ -4,6 +4,7 @@ export const getProperties = graphql(`
   query getProperties {
     properties {
       data {
+        id
         attributes {
           address
           status
