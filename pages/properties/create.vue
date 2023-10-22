@@ -16,6 +16,7 @@ const form: PropertyInput = reactive({
   numberOfTenant: 1,
   description: "",
   images: undefined,
+  price: undefined,
 });
 
 const onSubmitForm = async () => {
@@ -29,6 +30,7 @@ const onSubmitForm = async () => {
         numberOfTenant: form.numberOfTenant,
         description: form.description,
         images: form.images?.map((item: any) => item.response[0].id),
+        price: form.price,
       },
     },
   });

@@ -15,6 +15,8 @@ const form: Ref<PropertyInput> = ref({
   type: undefined,
   numberOfTenant: 1,
   description: "",
+  price: undefined,
+  images: undefined,
 });
 const propertyId = ref();
 
@@ -41,6 +43,12 @@ if (
     type: property?.type,
     numberOfTenant: property?.numberOfTenant,
     description: property?.description,
+    price: property?.price,
+    images: property?.images?.data.map((item) => ({
+      name: item.attributes?.name,
+      url: item.attributes?.url,
+      id: item.id,
+    })),
   };
 }
 
@@ -55,6 +63,14 @@ const onSubmitForm = async () => {
         type: form.value.type,
         numberOfTenant: form.value.numberOfTenant,
         description: form.value.description,
+        price: form.value.price,
+        images: form.value.images?.map((item: any) => {
+          if (item.response && item.response[0].id) {
+            return item.response[0].id;
+          } else {
+            return item.id;
+          }
+        }),
       },
     },
   });

@@ -27,6 +27,25 @@
           </el-form-item>
         </el-col>
       </el-row>
+
+      <el-row>
+        <el-col :span="11">
+          <el-form-item label="Price" prop="price">
+            <el-input-number v-model="form.price" :precision="2" :step="0.1" />
+          </el-form-item>
+        </el-col>
+        <el-col :span="1" />
+        <el-col :span="11">
+          <el-form-item
+            label="Address"
+            prop="address"
+            :rules="[{ required: true, message: 'Address is required' }]"
+          >
+            <el-input v-model="form.address" />
+          </el-form-item>
+        </el-col>
+      </el-row>
+
       <el-row>
         <el-col :span="11">
           <el-form-item
@@ -92,6 +111,14 @@
             </div>
           </template>
         </el-upload>
+      </el-form-item>
+      <el-form-item label="Description" prop="description">
+        <el-input
+          v-model="form.description"
+          :autosize="{ minRows: 2, maxRows: 4 }"
+          type="textarea"
+          placeholder="Please enter the details?"
+        />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm(formRef)">{{

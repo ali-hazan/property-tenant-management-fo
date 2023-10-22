@@ -10,8 +10,10 @@ export const getProperties = graphql(`
           status
           images {
             data {
+              id
               attributes {
                 url
+                name
               }
             }
           }
@@ -38,8 +40,10 @@ export const getPropertyByPropertyId = graphql(`
           type
           images {
             data {
+              id
               attributes {
                 url
+                name
               }
             }
           }
