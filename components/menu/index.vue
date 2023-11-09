@@ -1,6 +1,6 @@
 <template>
   <el-menu
-    default-active="2"
+    default-active="1"
     class="el-menu-vertical"
     :collapse="isExpandMenu"
     :collapse-transition="false"
@@ -14,6 +14,10 @@
       <el-icon><OfficeBuilding /></el-icon>
       <template #title>Properties</template>
     </el-menu-item>
+    <el-menu-item index="3">
+      <el-icon><OfficeBuilding /></el-icon>
+      <template #title>My Account</template>
+    </el-menu-item>
   </el-menu>
 </template>
 
@@ -22,15 +26,20 @@ import { OfficeBuilding, HomeFilled } from "@element-plus/icons-vue";
 
 const router = useRouter();
 
-const props = defineProps<{
-  isExpandMenu: boolean;
-}>();
-
-const onMenuSelected = (index: number) => {
-  if (index == 2) {
-    router.push("/properties");
-  } else {
-    router.push("/");
+const onMenuSelected = (index: string) => {
+  switch (index) {
+    case '3': {
+      router.push("/my-account");
+      break;
+    }
+    case '2': {
+      router.push("/properties");
+      break;
+    }
+    default: {
+      console.log("Index",index)
+      router.push("/");
+    }
   }
 };
 </script>

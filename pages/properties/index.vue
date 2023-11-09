@@ -1,5 +1,10 @@
 <template>
-  <NuxtLayout name="default">
+  <div>
+    <div class="flex justify-end mb-3">
+      <el-button type="primary" @click="$router.push('/properties/create')"
+        >Add</el-button
+      >
+    </div>
     <el-table
       :data="allProperties"
       class-name="min-h-[284px]"
@@ -27,16 +32,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <template #action>
-      <el-button>Print</el-button>
-      <el-button
-        type="primary"
-        class="ml-2"
-        @click="$router.push('/properties/create')"
-        >Add</el-button
-      >
-    </template>
-  </NuxtLayout>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -44,10 +40,6 @@ import { getProperties } from "../../graphql/queries/property";
 import { Edit, Delete } from "@element-plus/icons-vue";
 import { deleteProperty } from "~/graphql/mutations/property";
 import type { Action } from "element-plus";
-
-definePageMeta({
-  layout: false,
-});
 
 const {
   result: properties,

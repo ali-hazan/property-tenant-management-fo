@@ -9,9 +9,7 @@
         <Header v-model="isExpandMenu" />
       </el-header>
       <el-main>
-        <Breadcrumbs>
-          <slot name="action" />
-        </Breadcrumbs>
+        <Breadcrumbs/>
         <slot />
       </el-main>
     </el-container>

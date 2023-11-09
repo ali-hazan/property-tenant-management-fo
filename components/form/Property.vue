@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div class="max-w-4xl mx-auto">
     <el-form
       ref="formRef"
       :model="form"
       label-width="120px"
       label-position="top"
     >
-      <el-row>
-        <el-col :span="11">
+      <el-row :gutter="32">
+        <el-col  :xs="24" :sm="12">
           <el-form-item
             label="Property ID"
             prop="propertyId"
@@ -16,8 +16,7 @@
             <el-input v-model="form.propertyId" />
           </el-form-item>
         </el-col>
-        <el-col :span="1" />
-        <el-col :span="11">
+        <el-col :xs="24" :sm="12">
           <el-form-item
             label="Address"
             prop="address"
@@ -28,32 +27,15 @@
         </el-col>
       </el-row>
 
-      <el-row>
-        <el-col :span="11">
-          <el-form-item label="Price" prop="price">
-            <el-input-number v-model="form.price" :precision="2" :step="0.1" />
-          </el-form-item>
-        </el-col>
-        <el-col :span="1" />
-        <el-col :span="11">
-          <el-form-item
-            label="Address"
-            prop="address"
-            :rules="[{ required: true, message: 'Address is required' }]"
-          >
-            <el-input v-model="form.address" />
-          </el-form-item>
-        </el-col>
-      </el-row>
-
-      <el-row>
-        <el-col :span="11">
+      <el-row :gutter="32">
+        <el-col :xs="24" :sm="12">
           <el-form-item
             label="Status"
             prop="status"
             :rules="[{ required: true, message: 'Status is required' }]"
+            class="w-full"
           >
-            <el-select v-model="form.status">
+            <el-select v-model="form.status" class="w-full">
               <el-option
                 v-for="(status, key) in Enum_Property_Status"
                 :key="status"
@@ -63,14 +45,13 @@
             </el-select>
           </el-form-item>
         </el-col>
-        <el-col :span="1" />
-        <el-col :span="11">
+        <el-col :xs="24" :sm="12">
           <el-form-item
             label="Property Type"
             prop="type"
             :rules="[{ required: true, message: 'Property type is required' }]"
           >
-            <el-select v-model="form.type">
+            <el-select v-model="form.type" class="w-full">
               <el-option
                 v-for="(type, key) in Enum_Property_Type"
                 :key="type"
@@ -81,17 +62,31 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-form-item
-        label="No. of Tenant"
-        prop="numberOfTenant"
-        :rules="[{ required: true, message: 'Number of tenant is required' }]"
-      >
-        <el-input-number v-model="form.numberOfTenant" :min="1" :max="50" />
-      </el-form-item>
+
+      <el-row :gutter="32">
+        <el-col :xs="24" :sm="12">
+          <el-form-item label="Price" prop="price">
+            <el-input-number v-model="form.price" :precision="2" :step="0.1" />
+          </el-form-item>
+        </el-col>
+        <el-col :xs="24" :sm="12">
+          <el-form-item
+            label="No. of Tenant"
+            prop="numberOfTenant"
+            :rules="[
+              { required: true, message: 'Number of tenant is required' },
+            ]"
+          >
+            <el-input-number v-model="form.numberOfTenant" :min="1" :max="50" />
+          </el-form-item>
+        </el-col>
+      </el-row>
+
       <el-form-item
         label="Property image"
         prop="images"
         :rules="[{ required: true, message: 'Property image is required' }]"
+        class="mt-12"
       >
         <el-upload
           v-model:file-list="form.images"
@@ -112,7 +107,7 @@
           </template>
         </el-upload>
       </el-form-item>
-      <el-form-item label="Description" prop="description">
+      <el-form-item label="Description" prop="description" class="mt-6">
         <el-input
           v-model="form.description"
           :autosize="{ minRows: 2, maxRows: 4 }"
@@ -120,11 +115,13 @@
           placeholder="Please enter the details?"
         />
       </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm(formRef)">{{
-          isUpdateForm ? "Update" : "Create"
-        }}</el-button>
-        <el-button @click="$router.push('/properties')">Cancel</el-button>
+      <el-form-item class="mt-12">
+        <div class="flex justify-between w-full">
+          <el-button @click="$router.push('/properties')">Cancel</el-button>
+          <el-button type="primary" @click="submitForm(formRef)">{{
+            isUpdateForm ? "Update" : "Create"
+          }}</el-button>
+        </div>
       </el-form-item>
     </el-form>
   </div>
