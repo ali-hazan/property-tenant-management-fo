@@ -16,7 +16,7 @@
     </el-menu-item>
     <el-menu-item index="3">
       <el-icon><OfficeBuilding /></el-icon>
-      <template #title>My Account</template>
+      <template #title>Users</template>
     </el-menu-item>
   </el-menu>
 </template>
@@ -29,7 +29,7 @@ const router = useRouter();
 const onMenuSelected = (index: string) => {
   switch (index) {
     case '3': {
-      router.push("/my-account");
+      router.push("/users");
       break;
     }
     case '2': {
